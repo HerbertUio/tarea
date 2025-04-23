@@ -6,6 +6,7 @@ import com.uab.taller.store.domain.dto.request.UpdateAccountRequest;
 import com.uab.taller.store.service.IUserService;
 import com.uab.taller.store.usecase.account.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,21 +32,23 @@ public class AccountController {
     public List<Account> getAllAccounts() {
         return getAllAccountsUseCase.execute();
     }
-    @GetMapping(value = "/{accountId}")
+    @GetMapping(value = "/{id}")
     public Account getAccountById(@PathVariable Long id) {
         return getAccountByIdUseCase.execute(id);
     }
-    @DeleteMapping(value = "/{accountId}")
+    @DeleteMapping(value = "/{id}")
     public void deleteAccountById(@PathVariable Long id) {
         deleteAccountUseCase.execute(id);
     }
-    @PostMapping("")
-    public Account save(@RequestBody CreateAccountRequest createAccountRequest) {
-        return createAccountUseCase.execute(createAccountRequest);
-    }
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}")
     public Account update(@PathVariable long id, @RequestBody UpdateAccountRequest updateAccountRequest) {
         return updateAccountUseCase.execute(id, updateAccountRequest);
     }
+    @PostMapping(value = "accounts/users/{userId}")
+    public Account createUserAccount(@PathVariable Long userId, @RequestBody CreateAccountRequest createAccountRequest) {
+        Account newAccount = createAccountUseCase.execute(userId, createAccountRequest);
+        return newAccount;
+    }
+
 
 }

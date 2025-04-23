@@ -39,7 +39,7 @@ public class  UserController {
         return getUserByIdUseCase.execute(userId);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping(value = "/{userId}")
     public void deleteById(@PathVariable Long userId) {
         deleteUserUseCase.execute(userId);
     }
@@ -48,8 +48,9 @@ public class  UserController {
         return createUserUseCase.execute(createUserRequest);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}")
     public User update(@PathVariable long id, @RequestBody UserRequest userRequest) {
         return updateUserUseCase.execute(id,userRequest);
     }
+
 }

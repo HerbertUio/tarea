@@ -17,4 +17,7 @@ public class Account {
     int number;
     String currencyType;
     Double balance;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
 }

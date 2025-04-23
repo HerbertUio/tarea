@@ -40,7 +40,7 @@ public class ProfileController {
         return getProfileByIdUseCase.execute(userId);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping(value = "/{userId}")
     public void deleteById(@PathVariable Long userId) {
         deleteProfileUseCase.execute(userId);
     }
@@ -51,7 +51,7 @@ public class ProfileController {
         return createProfileUseCase.execute(profileRequest);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}")
     public Profile update(@PathVariable long id, @RequestBody ProfileRequest profileRequest) {
         return updateProfileUseCase.execute(id,profileRequest);
     }

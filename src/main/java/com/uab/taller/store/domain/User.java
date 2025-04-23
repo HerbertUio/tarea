@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,10 +16,9 @@ public class User {
     Long id;
     String email;
     String password;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     Profile profile;
-    @OneToMany(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Account> account;
 }

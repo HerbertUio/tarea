@@ -2,13 +2,14 @@ package com.uab.taller.store.service;
 
 import com.uab.taller.store.domain.Profile;
 import com.uab.taller.store.repository.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ProfileServiceImp implements  IProfileService{
-
+    @Autowired
     ProfileRepository profileRepository;
 
     public ProfileServiceImp(ProfileRepository profileRepository) {
